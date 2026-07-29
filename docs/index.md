@@ -10,7 +10,7 @@ This [Defold native extension](https://defold.com/manuals/extensions/) provides 
 ![Poki.com landing page](poki.png)
 
 ::: important
-Defold 1.13.0 or newer use `wasm-web` only. Defold 1.13.0 removed `js-web`; legacy asm.js builds are not supported.
+Defold 1.13.0 and newer versions use `wasm-web` only. Defold 1.13.0 removed `js-web`; legacy asm.js builds are not supported.
 :::
 
 ## Best practices
@@ -50,7 +50,7 @@ The [Poki Inspector](https://inspector.poki.dev/) helps you verify the integrati
 
 - inspect SDK, gameplay, ad, and `measure()` activity in the Event Log, together with detected errors and warnings;
 - work through the QA Modules checklist and review the total loading time and initial download size;
-- perform Scaling Tests (see below)'
+- perform Scaling Tests (see below);
 - run Inspector experiments such as Mute, Time, Assets, and Dark Mode;
 - generate a QR code or URL to open the local build on a mobile device while continuing to inspect its SDK events in the desktop browser.
 
@@ -58,7 +58,7 @@ See the [Poki Inspector guide](https://sdk.poki.com/poki-inspector) for the comp
 
 ![Local Defold build running in the Poki Inspector with QA modules and event log](inspector.png)
 
-Use Scaling Tests to try different resolutions, aspect ratios, and mobile-device presets, including rotating supported devices to check portrait and landscape behavior—see the [Defold GUI layouts manual](https://defold.com/manuals/gui-layouts/) for building adaptive interfaces;
+Use Scaling Tests to try different resolutions, aspect ratios, and mobile-device presets, including rotating supported devices to check portrait and landscape behavior—see the [Defold GUI layouts manual](https://defold.com/manuals/gui-layouts/) for building adaptive interfaces.
 
 ![Poki Inspector scaling test using a rotatable mobile-device preset](scaling_tests.png)
 
@@ -178,7 +178,7 @@ Some good practices for events:
 
 #### Progress events
 
-Measure users progress to get statistics on how players are doing in your game.
+Measure users' progress to get statistics on how players are doing in your game.
 Use the same category and `what` value for an attempt. Send `start`, followed by either `complete` or `fail` - never both for the same attempt:
 
 ```lua
@@ -193,7 +193,7 @@ poki_sdk.measure("level", "1", "complete") -- or "fail"
 
 #### Rewarded offer events
 
-Measure statistics regarding rewarded ads offerings - when these are visible for players and when players decide to use them.
+Measure statistics for rewarded ad offers—when these are visible to players and when players decide to use them.
 Measure the in-game offer that leads to a rewarded video. Send `visible` when the offer becomes visible and `interact` when the player chooses it:
 
 ```lua
@@ -230,7 +230,7 @@ poki_sdk.measure("shop-item", "extra-coins", "interact")
 
 #### Meta-game or cosmetic upgrades events
 
-Mesaure when player decide to get cosmetic upgrades or interact with meta-game features:
+Measure when players choose cosmetic upgrades or interact with meta-game features:
 
 ```lua
 -- Count milestones and item-specific cosmetic unlocks.
@@ -240,7 +240,7 @@ poki_sdk.measure("cosmetic", "hat", "unlocked")
 
 #### Difficulty change events
 
-Detect when player changes difficulty level if your game supports it, so that you know if these are suited for most players.
+Detect when players change the difficulty level if your game supports it, so that you know whether the available levels suit most players.
 
 ```lua
 -- Measure difficulty changes
@@ -256,7 +256,7 @@ Congrats, you’ve successfully implemented the Poki SDK! Now upload your game t
 
 ### Safe calls in non-HTML5 builds
 
-The Lua module is available only in HTML5 builds. When your project is also meant to be run on another platform safe guard Poki extension calls with a small wrapper:
+The Lua module is available only in HTML5 builds. When your project is also meant to be run on another platform, safeguard Poki extension calls with a small wrapper:
 
 ```lua
 if html5 then
@@ -384,7 +384,7 @@ The source code is available on [GitHub](https://github.com/defold/extension-pok
 
 ## API
 
-The public Lua API (corresponds to original JS API SDK):
+The public Lua API corresponds to the original JavaScript API:
 
 ```lua
 poki_sdk.gameplay_start() -- in JS it's PokiSDK.gameplayStart()

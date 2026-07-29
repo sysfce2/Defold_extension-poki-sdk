@@ -45,7 +45,8 @@
 
     parameters:
     - name: size
-      type: [string, nil]
+      type: string
+      optional: true
       desc: Optional reward size. Accepted values are small, medium, and large. Defaults to small.
 
     - name: callback
@@ -140,9 +141,11 @@
       type: string
     - name: what
       type: [string, nil]
+      optional: true
       desc: Optional event subject. Defaults to an empty string when omitted.
     - name: action
       type: [string, nil]
+      optional: true
       desc: Optional event action. Defaults to an empty string when omitted.
 
 #*****************************************************************************************************
