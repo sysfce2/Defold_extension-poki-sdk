@@ -68,6 +68,7 @@ function init(self)
 		poki_sdk.measure("rewarded", "demo-medium", "visible")
 		poki_sdk.measure("button", "external-link", "visible")
 		set_status("Status: wasm-web ready")
+		poki_sdk.get_user(on_user_ready)
 	else
 		set_status("Status: HTML5 / wasm-web build required")
 	end
