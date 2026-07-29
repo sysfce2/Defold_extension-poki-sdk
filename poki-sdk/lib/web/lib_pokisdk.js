@@ -165,7 +165,7 @@ var LibPokiSdk = {
         if (value == null) {
             return 0;
         }
-        return stringToUTF8OnStack(value);
+        return stringToUTF8OnStack(String(value));
     },
 
     PokiSdkJs_Measure: function(category, what, action) {

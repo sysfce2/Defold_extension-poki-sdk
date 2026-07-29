@@ -20,7 +20,7 @@
 
   - name: commercial_break
     type: function
-    desc: Requests a commercial break. The callback runs when the ad starts and when it finishes.
+    desc: Requests a commercial break. The callback reports START if an ad starts and SUCCESS when Poki's commercial-break promise resolves.
 
     parameters:
     - name: callback
@@ -41,11 +41,11 @@
 
   - name: rewarded_break
     type: function
-    desc: Requests a rewarded break. The size argument is optional and defaults to small.
+    desc: Requests a rewarded break. The size argument is optional and defaults to small. Call it as rewarded_break(callback) or rewarded_break(size, callback).
 
     parameters:
     - name: size
-      type: string
+      type: [string, nil]
       desc: Optional reward size. Accepted values are small, medium, and large. Defaults to small.
 
     - name: callback
@@ -118,7 +118,7 @@
 
   - name: get_url_param
     type: function
-    desc: Returns the value of a URL query parameter.
+    desc: Returns the URL parameter value provided by Poki. The Defold bridge maps a null or undefined result to nil.
     
     parameters:
     - name: key
@@ -127,23 +127,23 @@
     returns:
     - name: value
       type: [string, nil]
-      desc: The parameter value, or nil if it was not found.
+      desc: The parameter value, or nil when the Poki result is null or undefined.
 
 #*****************************************************************************************************
 
   - name: measure
     type: function
-    desc: Sends a custom analytics event to Poki.
+    desc: Sends a custom analytics event to Poki. Use start/complete/fail for progress, visible/interact for offer and UI engagement, or a custom action for other events. Do not duplicate commercial or rewarded ad playback and outcomes; Poki tracks those through the ad calls. The binding defaults omitted `what` and `action` to empty strings for compatibility.
 
     parameters:
     - name: category
       type: string
     - name: what
-      type: string
-      desc: Optional event subject. Defaults to an empty string.
+      type: [string, nil]
+      desc: Optional event subject. Defaults to an empty string when omitted.
     - name: action
-      type: string
-      desc: Optional event action. Defaults to an empty string.
+      type: [string, nil]
+      desc: Optional event action. Defaults to an empty string when omitted.
 
 #*****************************************************************************************************
 
@@ -226,7 +226,7 @@
   
   - name: open_external_link
     type: function
-    desc: Opens an external link in a new browser tab.
+    desc: Opens an external link in a new browser tab for user-initiated external navigation.
 
     parameters:
     - name: url

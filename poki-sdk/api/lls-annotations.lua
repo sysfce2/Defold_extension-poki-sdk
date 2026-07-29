@@ -20,10 +20,10 @@ poki_sdk.REWARDED_BREAK_START = nil
 function poki_sdk.gameplay_start() end
 ---Signals that gameplay has stopped.
 function poki_sdk.gameplay_stop() end
----Requests a commercial break. The callback is called when the ad starts and when it finishes.
+---Requests a commercial break. The callback receives `COMMERCIAL_BREAK_START` if an ad starts and `COMMERCIAL_BREAK_SUCCESS` when Poki's commercial-break promise resolves.
 ---@param callback fun(self: userdata, status: PokiCommercialBreakStatus)
 function poki_sdk.commercial_break(callback) end
----Requests a rewarded break. The callback is called when the ad starts and when it finishes.
+---Requests a rewarded break. The callback reports whether an ad starts and whether the rewarded-break promise resolves with a reward.
 ---@alias PokiRewardSize
 ---| '"small"'
 ---| '"medium"'
@@ -45,7 +45,7 @@ function poki_sdk.set_debug(is_debug) end
 ---Captures and reports an error to Poki.
 ---@param error string
 function poki_sdk.capture_error(error) end
----Returns `false`. This compatibility API is deprecated by Poki.
+---Returns `false`. Compatibility-only API. This function is deprecated by Poki.
 ---@deprecated Poki no longer exposes ad-block detection. Do not use this for game logic.
 ---@return boolean is_ad_blocked Always `false`.
 function poki_sdk.is_ad_blocked() end
@@ -53,15 +53,15 @@ function poki_sdk.is_ad_blocked() end
 ---@param params table<string, string|number> URL parameters to include in the generated shareable URL.
 ---@param callback fun(self: userdata, url: string) Called with the generated shareable URL.
 function poki_sdk.shareable_url(params, callback) end
----Returns the value of a URL query parameter by key.
+---Returns the URL parameter value provided by Poki. The Defold bridge maps a null or undefined result to `nil`.
 ---@param key string The query parameter key.
----@return string|nil value The query parameter value, or `nil` if the parameter was not found.
+---@return string|nil value The parameter value, or `nil` when the Poki result is null or undefined.
 
 function poki_sdk.get_url_param(key) end
----Sends a custom analytics event to Poki.
+---Sends a custom analytics event to Poki. Use `start`/`complete`/`fail` for progress, `visible`/`interact` for offer and UI engagement, or a custom action for other events. Commercial and rewarded ad playback and outcomes are tracked by the ad calls and must not be duplicated with `measure()`. Omitted binding arguments default to empty strings only for compatibility.
 ---@param category string
----@param what? string Optional event subject. Defaults to an empty string.
----@param action? string Optional event action. Defaults to an empty string.
+---@param what? string Optional event subject. Defaults to an empty string when omitted.
+---@param action? string Optional event action. Defaults to an empty string when omitted.
 function poki_sdk.measure(category, what, action) end
 ---Moves the Poki pill (branding element) to a different position.
 ---@param topPercent number Position from the top in percent.
@@ -77,7 +77,7 @@ function poki_sdk.get_token(callback) end
 ---Prompts the user to log in to their Poki account.
 ---@param callback fun(self: userdata, success: boolean, error: string|nil)
 function poki_sdk.login(callback) end
----Opens an external link in a new browser tab.
+---Opens an external link in a new browser tab for user-initiated external navigation.
 ---@param url string
 function poki_sdk.open_external_link(url) end
 return poki_sdk
