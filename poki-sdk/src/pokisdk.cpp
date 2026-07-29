@@ -57,6 +57,7 @@ extern "C" {
     void PokiSdkJs_AddParameterForURL(const char* key, const char* value);
     void PokiSdkJs_ShareableURL(ShareableURLCallback callback);
     const char* PokiSdkJs_GetURLParam(const char* key);
+    const char* PokiSdkJs_GetDeviceInfoCategory();
 
     void PokiSdkJs_Measure(const char* category, const char* what, const char* action);
     void PokiSdkJs_OpenExternalLink(const char* url);
@@ -531,6 +532,16 @@ static int PokiSdk_GetURLParam(lua_State* L)
     return 1;
 }
 
+static int PokiSdk_GetDeviceInfo(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 1);
+    const char* category = PokiSdkJs_GetDeviceInfoCategory();
+    lua_newtable(L);
+    lua_pushstring(L, category && category[0] ? category : "desktop");
+    lua_setfield(L, -2, "category");
+    return 1;
+}
+
 static int PokiSdk_Measure(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 0);
@@ -596,6 +607,7 @@ static const luaL_reg Module_methods[] =
     {"is_ad_blocked", PokiSdk_IsAdBlocked},
     {"shareable_url", PokiSdk_ShareableURL},
     {"get_url_param", PokiSdk_GetURLParam},
+    {"get_device_info", PokiSdk_GetDeviceInfo},
     {"measure", PokiSdk_Measure},
     {"move_pill", PokiSdk_MovePill},
     {"get_user", PokiSdk_GetUser},
