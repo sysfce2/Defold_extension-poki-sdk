@@ -426,6 +426,35 @@ nodes {
   overridden_fields: 8
   template_node_child: true
 }
+nodes {
+  position {
+    x: 801.0
+    y: 67.0
+  }
+  type: TYPE_TEMPLATE
+  id: "get_device_info"
+  inherit_alpha: true
+  template: "/dirtylarry/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "get_device_info/larrybutton"
+  parent: "get_device_info"
+  template_node_child: true
+}
+nodes {
+  scale {
+    x: 0.9
+    y: 0.9
+  }
+  type: TYPE_TEXT
+  text: "get_device_info"
+  id: "get_device_info/larrylabel"
+  parent: "get_device_info/larrybutton"
+  overridden_fields: 3
+  overridden_fields: 8
+  template_node_child: true
+}
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT
 max_nodes: 48
