@@ -162,7 +162,7 @@ Beginning with Poki Extension 3.3.0, sound will be muted automatically when ADS 
 
 ### Step 6 - Implement custom events
 
-Use `poki_sdk.measure(category, what, action)` to record meaningful checkpoints in a gameplay. Parameters can be any strings. The Defold binding defaults omitted `what` and `action` to empty strings for compatibility, but this fallback is not the recommended event shape. Use custom strings for meaningful game events. Choose short, stable values that remain comparable across game versions:
+Use `poki_sdk.measure(category, what, action)` to record meaningful checkpoints in a game. Parameters can be any strings. The Defold binding defaults omitted `what` and `action` to empty strings for compatibility, but this fallback is not the recommended event shape. Use custom strings for meaningful game events. Choose short, stable values that remain comparable across game versions:
 
 - `category` is the broad group, such as `"level"`, `"button"`, `"rewarded"`, or `"cosmetic"`.
 - `what` identifies the specific level, placement, button, item, or system.
