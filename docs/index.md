@@ -314,6 +314,14 @@ local id = poki_sdk.get_url_param("id")
 
 The extension returns the string supplied by `PokiSDK.getURLParam(key)`. If that JavaScript call returns `null` or `undefined`, the Defold bridge returns `nil`; Poki's documentation does not otherwise specify a missing-parameter result.
 
+### Player Device Info
+
+Use `poki_sdk.get_device_info()` to get the current player's device info. It returns a table that currently only has a `category` field, which is always `mobile`, `tablet`, or `desktop`. This is what the Poki platform itself uses to determine what to show.
+
+```lua
+local device_info = poki_sdk.get_device_info()
+local category = device_info.category
+```
 
 ### Moving the Poki Pill on mobile
 
@@ -396,6 +404,7 @@ poki_sdk.set_debug(value) -- in JS it's PokiSDK.setDebug(value)
 poki_sdk.capture_error(error_string) -- in JS it's PokiSDK.captureError(error_string)
 poki_sdk.shareable_url(params, callback) -- in JS it's PokiSDK.shareableURL({}).then(url => {})
 local value = poki_sdk.get_url_param(key) -- in JS it's PokiSDK.getURLParam('id')
+poki_sdk.get_device_info() -- in JS it's PokiSDK.getDeviceInfo()
 poki_sdk.measure(category, what, action) -- in JS it's PokiSDK.measure(category, what, action)
 poki_sdk.move_pill(topPercent, topPx) -- in JS it's PokiSDK.movePill(topPercent, topPx)
 poki_sdk.get_user(callback) -- in JS it's PokiSDK.getUser().then(user => {})

@@ -168,6 +168,11 @@ var LibPokiSdk = {
         return stringToUTF8OnStack(String(value));
     },
 
+    PokiSdkJs_GetDeviceInfoCategory: function() {
+        var value = PokiSDK.getDeviceInfo().category;
+        return stringToUTF8OnStack(value);
+    },
+
     PokiSdkJs_Measure: function(category, what, action) {
         PokiSDK.measure(UTF8ToString(category), UTF8ToString(what), UTF8ToString(action));
     },

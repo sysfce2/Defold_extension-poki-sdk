@@ -164,6 +164,15 @@
 
 #*****************************************************************************************************
 
+  - name: get_device_info
+    type: function
+
+    return:
+    - name: value
+      type: table
+
+#*****************************************************************************************************
+
   - name: get_user
     type: function
     desc: Retrieves the currently logged-in Poki user.
