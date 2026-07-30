@@ -115,6 +115,11 @@ function on_input(self, action_id, action)
 		set_status("URL parameter 'level': " .. tostring(level))
 	end)
 
+	dirtylarry:button("get_device_info", action_id, action, function()
+		local device_info = poki_sdk.get_device_info()
+		set_status("Device category: " .. tostring(device_info.category))
+	end)
+
 	dirtylarry:button("get_user", action_id, action, function()
 		poki_sdk.get_user(on_user_ready)
 	end)
